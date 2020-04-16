@@ -1,7 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const connectDB = require('./config/dbConnect');
-// const passport = require('passport');
+const passport = require('passport');
 
 const app = express();
 
@@ -24,8 +24,8 @@ app.use(logRequestStart);
 //connect database
 connectDB();
 
-//passport-Setup
-// app.use(passport.initialize());
+// passport-Setup
+app.use(passport.initialize());
 app.use((req, res, next) => {
   //CORS
 
@@ -38,6 +38,8 @@ app.use((req, res, next) => {
   );
   next();
 });
+
+require('./config/passport')(passport);
 
 app.use('/api', index);
 app.use('/api/profile', profile);
