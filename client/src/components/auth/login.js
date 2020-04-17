@@ -1,0 +1,75 @@
+import React, { Component } from 'react';
+// import { connect } from 'react-redux';
+// import { withRouter } from 'react-router-dom';
+// import { loginUser } from '../../store/actions/authAction';
+import Input from '../UI/input';
+
+class Login extends Component {
+  // const errors = this.props.errors;
+
+  state = {
+    phone: '',
+    password: '',
+  };
+
+  inputHandler = (event) => {
+    const value = event.target.value;
+    const name = event.target.name;
+
+    this.setState({
+      [name]: value,
+    });
+  };
+
+  submitHandler = (event) => {
+    event.preventDefault();
+    const data = {
+      phone: this.state.phone,
+      password: this.state.password,
+    };
+
+    //   this.props.loginUser(data);
+  };
+
+  render() {
+    return (
+      <div>
+        {/* {this.props.isAuth ? this.props.history.push('/dashboard') : null} */}
+        <div className="login">
+          <div className="container">
+            <div className="row">
+              <div className="col-md-8 m-auto">
+                <h1 className="display-4 text-center">Log In</h1>
+                <p className="lead text-center">Sign in to your account</p>
+                <form noValidate onSubmit={this.submitHandler}>
+                  <Input
+                    type="phone"
+                    name="phone"
+                    placeholder="phone number"
+                    onChange={this.inputHandler}
+                    // error={errors.loginphone}
+                    value={this.state.phone}
+                  />
+                  <Input
+                    type="password"
+                    name="password"
+                    placeholder="Password"
+                    onChange={this.inputHandler}
+                    // error={errors.loginPassword}
+                    value={this.state.password}
+                  />
+                  <input
+                    type="submit"
+                    className="btn btn-info btn-block mt-4"
+                  />
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+}
+
+export default Login;
