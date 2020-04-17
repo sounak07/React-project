@@ -1,4 +1,4 @@
 {
-    "mongoURI": "mongodb+srv://rick08:Sounak08*@cluster0-rpeoe.mongodb.net/test?retryWrites=true&w=majority",
+    "mongoURI": "mongodb+srv://sounak08:Sounak08*@cluster0-qldch.mongodb.net/test?retryWrites=true&w=majority",
     "secret": "Kabhi-kabhi-lagta-hai-apun-hi-vagwan-hai"
 }
