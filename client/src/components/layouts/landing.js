@@ -1,13 +1,15 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-// import { connect } from 'react-redux';
-// import { Redirect } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom';
 
 class Landing extends Component {
   render() {
+    const { isAuth } = this.props.auth;
+
     return (
       <div>
-        {/* {this.props.isAuth ? <Redirect to="/dashboard" /> : null} */}
+        {isAuth ? <Redirect to="/dashboard" /> : null}
         <div className="landing">
           <div className="dark-overlay landing-inner text-light">
             <div className="container">
@@ -31,4 +33,8 @@ class Landing extends Component {
   }
 }
 
-export default Landing;
+const mapStateToProps = (state) => ({
+  auth: state.auth,
+});
+
+export default connect(mapStateToProps)(Landing);

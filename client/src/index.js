@@ -8,10 +8,12 @@ import App from './App';
 import { createStore, applyMiddleware, combineReducers, compose } from 'redux';
 import authReducer from './store/reducers/auth';
 import errorReducer from './store/reducers/errorRed';
+import profileReducer from './store/reducers/profileRed';
 
 const rootReducer = combineReducers({
   auth: authReducer,
   errors: errorReducer,
+  profile: profileReducer,
 });
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;

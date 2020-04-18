@@ -44,6 +44,7 @@ router.post(
     profileField.user = req.user.id;
     if (req.body.handle) profileField.handle = req.body.handle;
     if (req.body.age) profileField.age = req.body.age;
+    if (req.body.email) profileField.email = req.body.email;
     if (req.body.sex) profileField.sex = req.body.sex;
     if (req.body.location) profileField.location = req.body.location;
 

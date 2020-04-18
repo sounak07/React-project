@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-// import { connect } from 'react-redux';
-// import { withRouter } from 'react-router-dom';
-// import { loginUser } from '../../store/actions/authAction';
+import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
+import { loginUser } from '../../store/actions/authActions';
 import Input from '../UI/input';
 
 class Login extends Component {
@@ -28,13 +28,15 @@ class Login extends Component {
       password: this.state.password,
     };
 
-    //   this.props.loginUser(data);
+    this.props.loginUser(data);
   };
 
   render() {
+    const { isAuth } = this.props.auth;
+
     return (
       <div>
-        {/* {this.props.isAuth ? this.props.history.push('/dashboard') : null} */}
+        {isAuth ? this.props.history.push('/dashboard') : null}
         <div className="login">
           <div className="container">
             <div className="row">
@@ -72,4 +74,9 @@ class Login extends Component {
   }
 }
 
-export default Login;
+const mapStateToProps = (state) => ({
+  auth: state.auth,
+  error: state.errors,
+});
+
+export default connect(mapStateToProps, { loginUser })(withRouter(Login));

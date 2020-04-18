@@ -1,8 +1,17 @@
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { logout } from '../../store/actions/authActions';
 
 class Navbar extends Component {
+  onLogOut = (e) => {
+    e.preventDefault();
+    this.props.logout();
+  };
+
   render() {
+    const { isAuth } = this.props.auth;
+
     return (
       <nav className="navbar navbar-expand-sm navbar-dark bg-dark mb-4">
         <div className="container">
@@ -19,28 +28,33 @@ class Navbar extends Component {
           </button>
 
           <div className="collapse navbar-collapse" id="mobile-nav">
-            {/* {!this.props.auth ? ( */}
-            <ul className="navbar-nav ml-auto">
-              <li className="nav-item">
-                <NavLink className="nav-link" to="/login">
-                  Login
-                </NavLink>
-              </li>
-              <li className="nav-item">
-                <NavLink className="nav-link" to="/register">
-                  Signup
-                </NavLink>
-              </li>
-            </ul>
-            {/* ) : ( */}
-            <ul className="navbar-nav ml-auto">
-              <li className="nav-item">
-                <NavLink className="nav-link" to="/dashboard">
-                  Dashboard
-                </NavLink>
-              </li>
-            </ul>
-            {/* )} */}
+            {!isAuth ? (
+              <ul className="navbar-nav ml-auto">
+                <li className="nav-item">
+                  <NavLink className="nav-link" to="/login">
+                    Login
+                  </NavLink>
+                </li>
+                <li className="nav-item">
+                  <NavLink className="nav-link" to="/register">
+                    Signup
+                  </NavLink>
+                </li>
+              </ul>
+            ) : (
+              <ul className="navbar-nav ml-auto">
+                <li className="nav-item">
+                  <NavLink className="nav-link" to="/dashboard">
+                    Dashboard
+                  </NavLink>
+                </li>
+                <li className="nav-item">
+                  <NavLink className="nav-link" to="/" onClick={this.onLogOut}>
+                    Logout
+                  </NavLink>
+                </li>
+              </ul>
+            )}
           </div>
         </div>
       </nav>
@@ -48,4 +62,8 @@ class Navbar extends Component {
   }
 }
 
-export default Navbar;
+const mapStateToProps = (state) => ({
+  auth: state.auth,
+});
+
+export default connect(mapStateToProps, { logout })(Navbar);

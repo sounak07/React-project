@@ -35,13 +35,11 @@ class Register extends Component {
   };
 
   render() {
-    // const { errors, isAuthenticated } = this.props.auth;
-
-    const { users } = this.props.auth;
+    const { isAuth } = this.props.auth;
 
     return (
       <div>
-        {/* {isAuthenticated ? this.props.history.push('/dashboard') : null} */}
+        {isAuth ? this.props.history.push('/dashboard') : null}
         <div className="register">
           <div className="container">
             <div className="row">

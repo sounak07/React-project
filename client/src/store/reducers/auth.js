@@ -1,4 +1,5 @@
 import * as actionTypes from '../actions/actionTypes';
+import isEmpty from '../../validations/is-Empty';
 
 const initialState = {
   isAuth: false,
@@ -10,7 +11,7 @@ const authReducer = (state = initialState, action) => {
     case actionTypes.SAVE_USER:
       return {
         ...state,
-        isAuth: true,
+        isAuth: !isEmpty(action.payload),
         users: action.payload,
       };
     default:
